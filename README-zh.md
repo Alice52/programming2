@@ -1,12 +1,55 @@
-# programming principles & design patterns
+## structure: version 2
 
-// todo: do transalation
+1. dpp
+
+   - solid
+   - lod
+   - 组合复用{继承组合接口抽象}
+   - kiss
+   - dry
+   - YAGNI
+
+2. dp
+
+   - 创建者模式[5]:
+   - 结构型模式[7]:
+   - 行为模式[11]:
+   - 在项目中的应用: 源码 || 微服务
+   - _反模式_
+
+3. coding
+
+   - coding style
+   - refactor
+   - best practice
+
+4. programming thinking
+
+   - 程序
+   - 代码质量
+   - oop vs po: java || go
+   - declarative vs imperative
+   - 函数式编程
+   - 响应式编程
+   - 模板编程
+   - 链式编程
+   - 组件化编程
+
+5. 测试
+
+   - tdd
+   - unit
+
+6. others
+
+   - ddd
+   - reactor
+   - xxx
+
 ---
 
-# reference
+## reference
 
 1. https://github.com/webpro/programming-principles
 2. https://www.bookstack.cn/read/effective-java-3rd-chinese/docs-README.md
 3. https://time.geekbang.org/column/intro/100039001
-
-

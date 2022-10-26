@@ -126,3 +126,4 @@
 1. [组件化和模块化](https://www.jianshu.com/p/a7df83270a8b)
 2. [函数式编程](https://www.jianshu.com/p/d59fa2ef0d78)
 3. [面向对象编程](https://www.cnblogs.com/zhenw/p/6160931.html)
+4. [函数式&声明式](https://www.techtarget.com/searchapparchitecture/tip/The-basics-of-working-with-declarative-programming-languages)
