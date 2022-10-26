@@ -19,14 +19,14 @@
 
 3. coding
 
+   - 程序
    - coding style
+   - 代码质量
    - refactor
    - best practice
 
-4. programming thinking
+4. programming
 
-   - 程序
-   - 代码质量
    - oop vs po: java || go
    - declarative vs imperative
    - 函数式编程
@@ -35,12 +35,18 @@
    - 链式编程
    - 组件化编程
 
-5. testing
+5. thinking
+
+   - pool
+   - 拆分
+   - 延迟满足
+
+6. testing
 
    - tdd
    - unit
 
-6. others
+7. others
 
    - ddd
    - reactor
