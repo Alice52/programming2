@@ -1,4 +1,4 @@
-## structure: version 2
+## structure
 
 1. dpp
 
@@ -35,7 +35,7 @@
    - 链式编程
    - 组件化编程
 
-5. 测试
+5. testing
 
    - tdd
    - unit
