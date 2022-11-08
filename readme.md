@@ -16,37 +16,38 @@
    - 行为模式[11]:
    - 在项目中的应用: 源码 || 微服务
    - _反模式_
+   - best practice
 
 3. coding
 
    - 程序
    - coding style
-   - 代码质量
+   - **代码质量**
    - refactor
    - best practice
 
 4. programming
 
-   - oop vs po: java || go
-   - declarative vs imperative
-   - 函数式编程
-   - 响应式编程
-   - 模板编程
-   - 链式编程
-   - 组件化编程
+   - types
+     1. oop vs po: java || go
+     2. declarative vs imperative
+     3. 函数式编程
+     4. 响应式编程
+     5. 模板编程
+     6. 链式编程
+     7. 组件化编程
+   - thinking
+     1. pool
+     2. 拆分
+     3. 延迟满足
 
-5. thinking
-
-   - pool
-   - 拆分
-   - 延迟满足
-
-6. testing
+5. testing
 
    - tdd
    - unit
+   - jmeter
 
-7. others
+6. others
 
    - ddd
    - reactor
