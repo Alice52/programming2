@@ -66,3 +66,9 @@
      1. 空指针异常
      2. 与业务耦合: 个人看法还是查不到返回 NULL 或者 EMPTY, 而不是 Throw 异常
    - 空对象: **空对象设计模式**
+
+---
+
+## reference
+
+1. https://github.com/Alice52/programming/issues/17

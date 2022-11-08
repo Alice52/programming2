@@ -82,3 +82,9 @@
 
 5. 继承关系: 带空心三角箭头的实线
 6. 实现关系: 带空心三角箭头的虚线
+
+---
+
+## reference
+
+1. https://github.com/Alice52/programming/issues/18

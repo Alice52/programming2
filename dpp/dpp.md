@@ -207,3 +207,9 @@
    - 复用的灵活性高: 可以在运行时动态进行, 新对象可以动态地引用与成分对象类型相同的对象
 4. 举例: 汽车分类管理{颜色+能源}
    ![avatar](/static/image/pattern/prin-crp.png)
+
+---
+
+## reference
+
+1. https://github.com/Alice52/programming/issues/19
