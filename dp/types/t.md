@@ -1,20 +1,29 @@
-### xxBuilder
+[toc]
 
-1. 简介
-2. 优点
-3. 缺点
+## xx
 
-### UML 图
+1. intros
+2. pros
+3. cons
+4. types
 
-### 适应场景
+## uml 图
 
-### 实现过程
+1. roles
+2. diagram
 
-### 经典使用举例
+## 适应场景
 
-1. JDK
-2. Spring
+## 实现过程
 
-### Notice
+## 经典使用举例
 
-## Reference
+1. jdk
+2. spring
+3. 自使用
+
+## notice
+
+1. 关联的相似 dp
+
+## reference
