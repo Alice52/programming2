@@ -27,3 +27,6 @@
 1. 关联的相似 dp
 
 ## reference
+
+1. https://github.com/Alice52/Alice52/files/7326309/-day06.pdf
+2. [geek-bang-dp]()
