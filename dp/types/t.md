@@ -11,6 +11,9 @@
 
 1. roles
 2. diagram
+3. explain
+   - Real world example
+   - In plain words
 
 ## 适应场景
 
