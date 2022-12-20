@@ -534,63 +534,69 @@ When an object is required that is similar to existing object or when the creati
 
 ### 💍 Singleton
 
-Real world example
+1. Real world example
 
-> There can only be one president of a country at a time. The same president has to be brought to action, whenever duty calls. President here is singleton.
+   - 一个国家只能有一位总统: 每当职责需要时, 必须让同一位总统采取行动
 
-In plain words
+2. In plain words
 
-> Ensures that only one object of a particular class is ever created.
+   - 确保指定的类只会被创建一次
 
-Wikipedia says
+3. Wikipedia says
 
-> In software engineering, the singleton pattern is a software design pattern that restricts the instantiation of a class to one object. This is useful when exactly one object is needed to coordinate actions across the system.
+   > In software engineering, the singleton pattern is a software design pattern that restricts the instantiation of a class to one object.
+   > This is useful when exactly one object is needed to coordinate actions across the system.
 
-Singleton pattern is actually considered an anti-pattern and overuse of it should be avoided. It is not necessarily bad and could have some valid use-cases but should be used with caution because it introduces a global state in your application and change to it in one place could affect in the other areas and it could become pretty difficult to debug. The other bad thing about them is it makes your code tightly coupled plus mocking the singleton could be difficult.
+4. intros
 
-**Programmatic Example**
+   - 单例模式经常也会被认识为反模式的: 应该避免过度使用(合理使用即可)
+   - 全局只有一个对象, 更改可能会影响未知的逻辑, 并且可能变得非常难以调试
+   - 单例与代码强耦合
+   - 测试困难: 模拟单例可能很困难
 
-To create a singleton, make the constructor private, disable cloning, disable extension and create a static variable to house the instance
+5. **Programmatic Example**
 
-```php
-final class President
-{
-    private static $instance;
+   - 将构造函数设为私有, 禁用克隆, 禁用扩展并创建一个静态变量来容纳实例
 
-    private function __construct()
-    {
-        // Hide the constructor
-    }
+     ```php
+     final class President
+     {
+         private static $instance;
 
-    public static function getInstance(): President
-    {
-        if (!self::$instance) {
-            self::$instance = new self();
-        }
+         private function __construct()
+         {
+             // Hide the constructor
+         }
 
-        return self::$instance;
-    }
+         public static function getInstance(): President
+         {
+             if (!self::$instance) {
+                 self::$instance = new self();
+             }
 
-    private function __clone()
-    {
-        // Disable cloning
-    }
+             return self::$instance;
+         }
 
-    private function __wakeup()
-    {
-        // Disable unserialize
-    }
-}
-```
+         private function __clone()
+         {
+             // Disable cloning
+         }
 
-Then in order to use
+         private function __wakeup()
+         {
+             // Disable unserialize
+         }
+     }
+     ```
 
-```php
-$president1 = President::getInstance();
-$president2 = President::getInstance();
+   - usage
 
-var_dump($president1 === $president2); // true
-```
+     ```php
+     $president1 = President::getInstance();
+     $president2 = President::getInstance();
+
+     var_dump($president1 === $president2); // true
+     ```
 
 ## Structural Design Patterns
 
