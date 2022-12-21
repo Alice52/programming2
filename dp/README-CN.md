@@ -348,114 +348,107 @@
 
 ### 👷 Builder
 
-Real world example
+1. Real world example
 
-> Imagine you are at Hardee's and you order a specific deal, lets say, "Big Hardee" and they hand it over to you without _any questions_; this is the example of simple factory. But there are cases when the creation logic might involve more steps. For example you want a customized Subway deal, you have several options in how your burger is made e.g what bread do you want? what types of sauces would you like? What cheese would you want? etc. In such cases builder pattern comes to the rescue.
+   - 需要一个定制的门: 颜色, 大小, 烙印等指定特色, 每一步都能自己定制
+   - 工厂模式: 从工厂获取, 一般不接收参数(定制), 直接获取完成后的对象
 
-In plain words
+2. In plain words
 
-> Allows you to create different flavors of an object while avoiding constructor pollution. Useful when there could be several flavors of an object. Or when there are a lot of steps involved in creation of an object.
+   - 允许您创建不同风格(属性)的对象, 同时避免构造函数污染
+   - 当创建一个对象涉及很多步骤和部件
 
-Wikipedia says
+3. Wikipedia says
 
-> The builder pattern is an object creation software design pattern with the intentions of finding a solution to the telescoping constructor anti-pattern.
+   > 核心就是避免构造函数污染
 
-Having said that let me add a bit about what telescoping constructor anti-pattern is. At one point or the other we have all seen a constructor like below:
+4. **Programmatic Example**
 
-```php
-public function __construct($size, $cheese = true, $pepperoni = true, $tomato = false, $lettuce = true)
-{
-}
-```
+   - 首先我们有我们想要制作的汉堡
 
-As you can see; the number of constructor parameters can quickly get out of hand and it might become difficult to understand the arrangement of parameters. Plus this parameter list could keep on growing if you would want to add more options in future. This is called telescoping constructor anti-pattern.
+     ```php
+     class Burger
+     {
+         protected $size;
 
-**Programmatic Example**
+         protected $cheese = false;
+         protected $pepperoni = false;
+         protected $lettuce = false;
+         protected $tomato = false;
 
-The sane alternative is to use the builder pattern. First of all we have our burger that we want to make
+         public function __construct(BurgerBuilder $builder)
+         {
+             $this->size = $builder->size;
+             $this->cheese = $builder->cheese;
+             $this->pepperoni = $builder->pepperoni;
+             $this->lettuce = $builder->lettuce;
+             $this->tomato = $builder->tomato;
+         }
+     }
+     ```
 
-```php
-class Burger
-{
-    protected $size;
+   - And then we have the builder
 
-    protected $cheese = false;
-    protected $pepperoni = false;
-    protected $lettuce = false;
-    protected $tomato = false;
+     ```php
+     class BurgerBuilder
+     {
+         public $size;
 
-    public function __construct(BurgerBuilder $builder)
-    {
-        $this->size = $builder->size;
-        $this->cheese = $builder->cheese;
-        $this->pepperoni = $builder->pepperoni;
-        $this->lettuce = $builder->lettuce;
-        $this->tomato = $builder->tomato;
-    }
-}
-```
+         public $cheese = false;
+         public $pepperoni = false;
+         public $lettuce = false;
+         public $tomato = false;
 
-And then we have the builder
+         public function __construct(int $size)
+         {
+             $this->size = $size;
+         }
 
-```php
-class BurgerBuilder
-{
-    public $size;
+         public function addPepperoni()
+         {
+             $this->pepperoni = true;
+             return $this;
+         }
 
-    public $cheese = false;
-    public $pepperoni = false;
-    public $lettuce = false;
-    public $tomato = false;
+         public function addLettuce()
+         {
+             $this->lettuce = true;
+             return $this;
+         }
 
-    public function __construct(int $size)
-    {
-        $this->size = $size;
-    }
+         public function addCheese()
+         {
+             $this->cheese = true;
+             return $this;
+         }
 
-    public function addPepperoni()
-    {
-        $this->pepperoni = true;
-        return $this;
-    }
+         public function addTomato()
+         {
+             $this->tomato = true;
+             return $this;
+         }
 
-    public function addLettuce()
-    {
-        $this->lettuce = true;
-        return $this;
-    }
+         public function build(): Burger
+         {
+             return new Burger($this);
+         }
+     }
+     ```
 
-    public function addCheese()
-    {
-        $this->cheese = true;
-        return $this;
-    }
+   - And then it can be used as:
 
-    public function addTomato()
-    {
-        $this->tomato = true;
-        return $this;
-    }
+     ```php
+     $burger = (new BurgerBuilder(14))
+                         ->addPepperoni()
+                         ->addLettuce()
+                         ->addTomato()
+                         ->build();
+     ```
 
-    public function build(): Burger
-    {
-        return new Burger($this);
-    }
-}
-```
+5. **When to use?**
 
-And then it can be used as:
-
-```php
-$burger = (new BurgerBuilder(14))
-                    ->addPepperoni()
-                    ->addLettuce()
-                    ->addTomato()
-                    ->build();
-```
-
-**When to use?**
-
-When there could be several flavors of an object and to avoid the constructor telescoping. The key difference from the factory pattern is that; factory pattern is to be used when the creation is a one step process while builder pattern is to be used when the creation is a multi step process.
+   - 当一个对象可能有多种风格并避免构造函数伸缩时
+   - 与工厂模式的主要区别在于: 当创建是一步过程时使用工厂模式, 而当创建是多步过程时使用构建器模式
 
 ### 🐑 Prototype
 
