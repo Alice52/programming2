@@ -48,304 +48,303 @@
 
 ### 🏠 Simple Factory
 
-Real world example
+1.  Real world example
 
-> Consider, you are building a house and you need doors. You can either put on your carpenter clothes, bring some wood, glue, nails and all the tools required to build the door and start building it in your house or you can simply call the factory and get the built door delivered to you so that you don't need to learn anything about the door making or to deal with the mess that comes with making it.
+    - 需要门, 自己去制造一个门, 还是去让工厂制造好送过来
 
-In plain words
+2.  In plain words
 
-> Simple factory simply generates an instance for client without exposing any instantiation logic to the client
+    - 简单工厂只是为客户端生成一个实例, 而不向客户端暴露任何实例化逻辑
 
-Wikipedia says
+3.  Wikipedia says
 
-> In object-oriented programming (OOP), a factory is an object for creating other objects – formally a factory is a function or method that returns objects of a varying prototype or class from some method call, which is assumed to be "new".
+    > In object-oriented programming (OOP), a factory is an object for creating other objects
+    > formally a factory is a function or method that returns objects of a varying prototype or class from some method call, which is assumed to be "new".
 
-**Programmatic Example**
+4.  **Programmatic Example**: 早门
 
-First of all we have a door interface and the implementation
+    - First of all we have a door interface and the implementation
 
-```php
-interface Door
-{
-    public function getWidth(): float;
-    public function getHeight(): float;
-}
+      ```php
+      interface Door
+      {
+          public function getWidth(): float;
+          public function getHeight(): float;
+      }
 
-class WoodenDoor implements Door
-{
-    protected $width;
-    protected $height;
+      class WoodenDoor implements Door
+      {
+          protected $width;
+          protected $height;
 
-    public function __construct(float $width, float $height)
-    {
-        $this->width = $width;
-        $this->height = $height;
-    }
+          public function __construct(float $width, float $height)
+          {
+              $this->width = $width;
+              $this->height = $height;
+          }
 
-    public function getWidth(): float
-    {
-        return $this->width;
-    }
+          public function getWidth(): float
+          {
+              return $this->width;
+          }
 
-    public function getHeight(): float
-    {
-        return $this->height;
-    }
-}
-```
+          public function getHeight(): float
+          {
+              return $this->height;
+          }
+      }
+      ```
 
-Then we have our door factory that makes the door and returns it
+    - Then we have our door factory that makes the door and returns it
 
-```php
-class DoorFactory
-{
-    public static function makeDoor($width, $height): Door
-    {
-        return new WoodenDoor($width, $height);
-    }
-}
-```
+      ```php
+      class DoorFactory
+      {
+          public static function makeDoor($width, $height): Door
+          {
+              return new WoodenDoor($width, $height);
+          }
+      }
+      ```
 
-And then it can be used as
+    - And then it can be used as
 
-```php
-// Make me a door of 100x200
-$door = DoorFactory::makeDoor(100, 200);
+      ```php
+      // Make me a door of 100x200
+      $door = DoorFactory::makeDoor(100, 200);
 
-echo 'Width: ' . $door->getWidth();
-echo 'Height: ' . $door->getHeight();
+      echo 'Width: ' . $door->getWidth();
+      echo 'Height: ' . $door->getHeight();
 
-// Make me a door of 50x100
-$door2 = DoorFactory::makeDoor(50, 100);
-```
+      // Make me a door of 50x100
+      $door2 = DoorFactory::makeDoor(50, 100);
+      ```
 
-**When to Use?**
+5.  **When to Use?**
 
-When creating an object is not just a few assignments and involves some logic, it makes sense to put it in a dedicated factory instead of repeating the same code everywhere.
+    - 当创建一个对象不仅仅是一些赋值并且涉及一些逻辑时, 将它放在一个专门的工厂而不是到处重复相同的代码是有意义的
 
 ### 🏭 Factory Method
 
-Real world example
+1.  Real world example
 
-> Consider the case of a hiring manager. It is impossible for one person to interview for each of the positions. Based on the job opening, she has to decide and delegate the interview steps to different people.
+    - ~~招聘情况: 不可能一个人面试一个职位, 根据职位空缺决定不同的经理面试不同的岗位人员~~
 
-In plain words
+2.  In plain words
 
-> It provides a way to delegate the instantiation logic to child classes.
+    - **提供了一种将实例化逻辑委托给子类的方法**
 
-Wikipedia says
+3.  Wikipedia says
 
-> In class-based programming, the factory method pattern is a creational pattern that uses factory methods to deal with the problem of creating objects without having to specify the exact class of the object that will be created. This is done by creating objects by calling a factory method—either specified in an interface and implemented by child classes, or implemented in a base class and optionally overridden by derived classes—rather than by calling a constructor.
+    > In class-based programming, the factory method pattern is a creational pattern that uses factory methods to deal with the problem of creating objects without having to specify the exact class of the object that will be created.
+    > This is done by creating objects by calling a factory method—either specified in an interface and implemented by child classes, or implemented in a base class and optionally overridden by derived classes—rather than by calling a constructor.
 
-**Programmatic Example**
+4.  **Programmatic Example**
 
-Taking our hiring manager example above. First of all we have an interviewer interface and some implementations for it
+    - Taking our hiring manager example above. First of all we have an interviewer interface and some implementations for it
 
-```php
-interface Interviewer
-{
-    public function askQuestions();
-}
+      ```php
+      interface Interviewer
+      {
+          public function askQuestions();
+      }
 
-class Developer implements Interviewer
-{
-    public function askQuestions()
-    {
-        echo 'Asking about design patterns!';
-    }
-}
+      class Developer implements Interviewer
+      {
+          public function askQuestions()
+          {
+              echo 'Asking about design patterns!';
+          }
+      }
 
-class CommunityExecutive implements Interviewer
-{
-    public function askQuestions()
-    {
-        echo 'Asking about community building';
-    }
-}
-```
+      class CommunityExecutive implements Interviewer
+      {
+          public function askQuestions()
+          {
+              echo 'Asking about community building';
+          }
+      }
+      ```
 
-Now let us create our `HiringManager`
+    - Now let us create our `HiringManager`
 
-```php
-abstract class HiringManager
-{
+      ```php
+      abstract class HiringManager
+      {
 
-    // Factory method
-    abstract protected function makeInterviewer(): Interviewer;
+          // Factory method
+          abstract protected function makeInterviewer(): Interviewer;
 
-    public function takeInterview()
-    {
-        $interviewer = $this->makeInterviewer();
-        $interviewer->askQuestions();
-    }
-}
+          public function takeInterview()
+          {
+              $interviewer = $this->makeInterviewer();
+              $interviewer->askQuestions();
+          }
+      }
 
-```
+      ```
 
-Now any child can extend it and provide the required interviewer
+    - Now any child can extend it and provide the required interviewer
 
-```php
-class DevelopmentManager extends HiringManager
-{
-    protected function makeInterviewer(): Interviewer
-    {
-        return new Developer();
-    }
-}
+      ```php
+      class DevelopmentManager extends HiringManager
+      {
+          protected function makeInterviewer(): Interviewer
+          {
+              return new Developer();
+          }
+      }
 
-class MarketingManager extends HiringManager
-{
-    protected function makeInterviewer(): Interviewer
-    {
-        return new CommunityExecutive();
-    }
-}
-```
+      class MarketingManager extends HiringManager
+      {
+          protected function makeInterviewer(): Interviewer
+          {
+              return new CommunityExecutive();
+          }
+      }
+      ```
 
-and then it can be used as
+    - and then it can be used as
 
-```php
-$devManager = new DevelopmentManager();
-$devManager->takeInterview(); // Output: Asking about design patterns
+      ```php
+      $devManager = new DevelopmentManager();
+      $devManager->takeInterview(); // Output: Asking about design patterns
 
-$marketingManager = new MarketingManager();
-$marketingManager->takeInterview(); // Output: Asking about community building.
-```
+      $marketingManager = new MarketingManager();
+      $marketingManager->takeInterview(); // Output: Asking about community building.
+      ```
 
-**When to use?**
-
-Useful when there is some generic processing in a class but the required sub-class is dynamically decided at runtime. Or putting it in other words, when the client doesn't know what exact sub-class it might need.
+5.  **When to use?**
+    - 具体的创建逻辑不确定: 运行时决定由哪个子类创建(当客户不知道它可能需要什么确切的子类时)
 
 ### 🔨 Abstract Factory
 
-Real world example
+1. Real world example
 
-> Extending our door example from Simple Factory. Based on your needs you might get a wooden door from a wooden door shop, iron door from an iron shop or a PVC door from the relevant shop. Plus you might need a guy with different kind of specialities to fit the door, for example a carpenter for wooden door, welder for iron door etc. As you can see there is a dependency between the doors now, wooden door needs carpenter, iron door needs a welder etc.
+   - 需要门和安装师傅: 现在门之间存在依赖关系, 木门需要木匠, 铁门需要焊工等
 
-In plain words
+2. In plain words
 
-> A factory of factories; a factory that groups the individual but related/dependent factories together without specifying their concrete classes.
+   - 工厂中的工厂: 一个工厂, 它将单独但相关/依赖的工厂组合在一起, 而不指定它们的具体类
 
-Wikipedia says
+3. Wikipedia says
 
-> The abstract factory pattern provides a way to encapsulate a group of individual factories that have a common theme without specifying their concrete classes
+   > The abstract factory pattern provides a way to encapsulate a group of individual factories that have a common theme without specifying their concrete classes
 
-**Programmatic Example**
+4. **Programmatic Example**
 
-Translating the door example above. First of all we have our `Door` interface and some implementation for it
+   - first of all we have our `Door` interface and some implementation for it
 
-```php
-interface Door
-{
-    public function getDescription();
-}
+     ```php
+     interface Door
+     {
+         public function getDescription();
+     }
 
-class WoodenDoor implements Door
-{
-    public function getDescription()
-    {
-        echo 'I am a wooden door';
-    }
-}
+     class WoodenDoor implements Door
+     {
+         public function getDescription()
+         {
+             echo 'I am a wooden door';
+         }
+     }
 
-class IronDoor implements Door
-{
-    public function getDescription()
-    {
-        echo 'I am an iron door';
-    }
-}
-```
+     class IronDoor implements Door
+     {
+         public function getDescription()
+         {
+             echo 'I am an iron door';
+         }
+     }
+     ```
 
-Then we have some fitting experts for each door type
+   - Then we have some fitting experts for each door type
 
-```php
-interface DoorFittingExpert
-{
-    public function getDescription();
-}
+     ```php
+     interface DoorFittingExpert
+     {
+         public function getDescription();
+     }
 
-class Welder implements DoorFittingExpert
-{
-    public function getDescription()
-    {
-        echo 'I can only fit iron doors';
-    }
-}
+     class Welder implements DoorFittingExpert
+     {
+         public function getDescription()
+         {
+             echo 'I can only fit iron doors';
+         }
+     }
 
-class Carpenter implements DoorFittingExpert
-{
-    public function getDescription()
-    {
-        echo 'I can only fit wooden doors';
-    }
-}
-```
+     class Carpenter implements DoorFittingExpert
+     {
+         public function getDescription()
+         {
+             echo 'I can only fit wooden doors';
+         }
+     }
+     ```
 
-Now we have our abstract factory that would let us make family of related objects i.e. wooden door factory would create a wooden door and wooden door fitting expert and iron door factory would create an iron door and iron door fitting expert
+   - Now we have our abstract factory that would let us make family of related objects i.e. wooden door factory would create a wooden door and wooden door fitting expert and iron door factory would create an iron door and iron door fitting expert
 
-```php
-interface DoorFactory
-{
-    public function makeDoor(): Door;
-    public function makeFittingExpert(): DoorFittingExpert;
-}
+     ```php
+     interface DoorFactory
+     {
+         public function makeDoor(): Door;
+         public function makeFittingExpert(): DoorFittingExpert;
+     }
 
-// Wooden factory to return carpenter and wooden door
-class WoodenDoorFactory implements DoorFactory
-{
-    public function makeDoor(): Door
-    {
-        return new WoodenDoor();
-    }
+     // Wooden factory to return carpenter and wooden door
+     class WoodenDoorFactory implements DoorFactory
+     {
+         public function makeDoor(): Door
+         {
+             return new WoodenDoor();
+         }
 
-    public function makeFittingExpert(): DoorFittingExpert
-    {
-        return new Carpenter();
-    }
-}
+         public function makeFittingExpert(): DoorFittingExpert
+         {
+             return new Carpenter();
+         }
+     }
 
-// Iron door factory to get iron door and the relevant fitting expert
-class IronDoorFactory implements DoorFactory
-{
-    public function makeDoor(): Door
-    {
-        return new IronDoor();
-    }
+     // Iron door factory to get iron door and the relevant fitting expert
+     class IronDoorFactory implements DoorFactory
+     {
+         public function makeDoor(): Door
+         {
+             return new IronDoor();
+         }
 
-    public function makeFittingExpert(): DoorFittingExpert
-    {
-        return new Welder();
-    }
-}
-```
+         public function makeFittingExpert(): DoorFittingExpert
+         {
+             return new Welder();
+         }
+     }
+     ```
 
-And then it can be used as
+   - And then it can be used as
 
-```php
-$woodenFactory = new WoodenDoorFactory();
+     ```php
+     $woodenFactory = new WoodenDoorFactory();
 
-$door = $woodenFactory->makeDoor();
-$expert = $woodenFactory->makeFittingExpert();
+     $door = $woodenFactory->makeDoor();
+     $expert = $woodenFactory->makeFittingExpert();
 
-$door->getDescription();  // Output: I am a wooden door
-$expert->getDescription(); // Output: I can only fit wooden doors
+     $door->getDescription();  // Output: I am a wooden door
+     $expert->getDescription(); // Output: I can only fit wooden doors
 
-// Same for Iron Factory
-$ironFactory = new IronDoorFactory();
+     // Same for Iron Factory
+     $ironFactory = new IronDoorFactory();
 
-$door = $ironFactory->makeDoor();
-$expert = $ironFactory->makeFittingExpert();
+     $door = $ironFactory->makeDoor();
+     $expert = $ironFactory->makeFittingExpert();
 
-$door->getDescription();  // Output: I am an iron door
-$expert->getDescription(); // Output: I can only fit iron doors
-```
+     $door->getDescription();  // Output: I am an iron door
+     $expert->getDescription(); // Output: I can only fit iron doors
+     ```
 
-As you can see the wooden door factory has encapsulated the `carpenter` and the `wooden door` also iron door factory has encapsulated the `iron door` and `welder`. And thus it had helped us make sure that for each of the created door, we do not get a wrong fitting expert.
+5. **When to use?**
 
-**When to use?**
-
-When there are interrelated dependencies with not-that-simple creation logic involved
+   - 当存在相互关联的依赖关系并涉及不那么简单的创建逻辑时
 
 ### 👷 Builder
 
