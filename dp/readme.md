@@ -67,4 +67,8 @@
 
 ## reference
 
-1. https://github.com/Alice52/programming/issues/1
+1. https://github.com/Alice52/programming/issues/2
+2. [设计模式之美](https://www.aliyundrive.com/drive/folder/62008661f37d5fd3b1df40a38d9108c4234f1dca) + [bak](https://time.geekbang.org/column/intro/100039001)
+3. [设计模式讲解-黑马](https://github.com/Alice52/programming/issues/9)
+4. [设计模式-尚硅谷](https://www.bilibili.com/video/BV1mG411K7Jj/)
+5. [dp-repo real-word explain](./README-CN.md)

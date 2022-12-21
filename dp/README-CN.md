@@ -452,77 +452,75 @@
 
 ### 🐑 Prototype
 
-Real world example
+1. Real world example
 
-> Remember dolly? The sheep that was cloned! Lets not get into the details but the key point here is that it is all about cloning
+   - ~~Remember dolly? The sheep that was cloned! Lets not get into the details but the key point here is that it is all about cloning~~
 
-In plain words
+2. In plain words
 
-> Create object based on an existing object through cloning.
+   - 通过克隆基于现有对象创建完全一样的副本对象, _之后可以修改各自对象_
 
-Wikipedia says
+3. Wikipedia says
 
-> The prototype pattern is a creational design pattern in software development. It is used when the type of objects to create is determined by a prototypical instance, which is cloned to produce new objects.
+   > The prototype pattern is a creational design pattern in software development.
+   > It is used when the type of objects to create is determined by a prototypical instance, which is cloned to produce new objects.
 
-In short, it allows you to create a copy of an existing object and modify it to your needs, instead of going through the trouble of creating an object from scratch and setting it up.
+4. **Programmatic Example**
 
-**Programmatic Example**
+   - In PHP, it can be easily done using `clone`
 
-In PHP, it can be easily done using `clone`
+     ```php
+     class Sheep
+     {
+         protected $name;
+         protected $category;
 
-```php
-class Sheep
-{
-    protected $name;
-    protected $category;
+         public function __construct(string $name, string $category = 'Mountain Sheep')
+         {
+             $this->name = $name;
+             $this->category = $category;
+         }
 
-    public function __construct(string $name, string $category = 'Mountain Sheep')
-    {
-        $this->name = $name;
-        $this->category = $category;
-    }
+         public function setName(string $name)
+         {
+             $this->name = $name;
+         }
 
-    public function setName(string $name)
-    {
-        $this->name = $name;
-    }
+         public function getName()
+         {
+             return $this->name;
+         }
 
-    public function getName()
-    {
-        return $this->name;
-    }
+         public function setCategory(string $category)
+         {
+             $this->category = $category;
+         }
 
-    public function setCategory(string $category)
-    {
-        $this->category = $category;
-    }
+         public function getCategory()
+         {
+             return $this->category;
+         }
+     }
+     ```
 
-    public function getCategory()
-    {
-        return $this->category;
-    }
-}
-```
+   - Then it can be cloned like below
 
-Then it can be cloned like below
+     ```php
+     $original = new Sheep('Jolly');
+     echo $original->getName(); // Jolly
+     echo $original->getCategory(); // Mountain Sheep
 
-```php
-$original = new Sheep('Jolly');
-echo $original->getName(); // Jolly
-echo $original->getCategory(); // Mountain Sheep
+     // Clone and modify what is required
+     $cloned = clone $original;
+     $cloned->setName('Dolly');
+     echo $cloned->getName(); // Dolly
+     echo $cloned->getCategory(); // Mountain sheep
+     ```
 
-// Clone and modify what is required
-$cloned = clone $original;
-$cloned->setName('Dolly');
-echo $cloned->getName(); // Dolly
-echo $cloned->getCategory(); // Mountain sheep
-```
+5. **When to use?**
 
-Also you could use the magic method `__clone` to modify the cloning behavior.
-
-**When to use?**
-
-When an object is required that is similar to existing object or when the creation would be expensive as compared to cloning.
+   - 当需要一个与现有对象相似的对象时
+   - 或者当创建与克隆相比代价高昂时
 
 ### 💍 Singleton
 
