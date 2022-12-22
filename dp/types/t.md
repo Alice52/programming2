@@ -14,7 +14,7 @@
 ## uml 图
 
 1. roles
-2. diagram
+2. uml
 3. explain
    - Real world example
    - In plain words
