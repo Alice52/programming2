@@ -15,7 +15,11 @@
 
 1. roles
 2. uml
+
+   ![avatar](/static/image/dp/adapter-uml.png)
+
 3. explain
+
    - Real world example
    - In plain words
 
