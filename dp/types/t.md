@@ -16,7 +16,7 @@
 1. roles
 2. uml
 
-   ![avatar](/static/image/dp/adapter-uml.png)
+   ![avatar](/static/image/dp/xx-uml.png)
 
 3. explain
 
