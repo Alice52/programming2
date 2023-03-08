@@ -5,7 +5,7 @@
 ## xx
 
 1. intros
-   - definition
+   - 定义
 2. feature
 3. pros
 4. cons
