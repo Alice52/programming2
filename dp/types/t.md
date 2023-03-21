@@ -4,12 +4,10 @@
 
 ## xx
 
-1. intros
-   - 定义
+1. 定义
 2. feature
-3. pros
-4. cons
-5. types
+3. pros & cons
+4. types
 
 ## uml 图
 
@@ -32,10 +30,6 @@
 1. jdk
 2. spring
 3. working sample
-
-## notice
-
-1. 关联的相似 dp
 
 ## relative
 
