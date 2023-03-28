@@ -6,20 +6,24 @@
    - 是为了**验证回归代码**
    - 是为了试图找出代码中潜藏着的 BUG
 
-2. env
+2. feature
 
-   - SQL 数据库: H2
+   - intros
+   - principle
+   - coding step
+   - verify data object
+   - verify exception
+   - verify mcall
+   - @Test order
+   - sample
 
-## feature
+3. core point
 
-1. intros
-2. principle
-3. coding step
-4. verify data object
-5. verify exception
-6. verify mcall
-7. @Test order
-8. sample
+   - 验证数据
+   - 验证方法
+   - 验证异常
+   - 环境依赖: DB, MQ
+   - 逻辑覆盖: 这个就很大代价
 
 ---
 
